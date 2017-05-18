@@ -20,6 +20,8 @@ function getDataFromApi(searchTerm) {
   };
   $.getJSON(giphyURL, query, function(data) {
     fillURL(appState, data.data[0].id);
+    fillinBeginning(appState, $('.Beginning').val());
+    console.log($('.Beginning').val());
     render(appState);
         console.log(data.data[0].id)
   });
@@ -27,11 +29,11 @@ function getDataFromApi(searchTerm) {
 }
 // Beginning Story
 function fillinBeginning (state, userElement) {
-  if (userElement === null) {
-      state.beginning.push('');
-  } else {
+//   if (userElement === null) {
+//       state.beginning.push('no text entered');
+//   } else {
       state.beginning.push(userElement);
-  }
+//   }
 };
 // Middle Story
 function fillinMiddle (state, userElement) {
@@ -58,8 +60,8 @@ function fillURL (state, urlElement) {
 //   console.log(data);
 // }
 
-getDataFromApi('sleep');
-console.log('a log in the code right after we call getDataFromApi')
+
+
 console.log(appState);
 
 // getDataFromApi('I got up this morning.', displayGiphySearchData);
@@ -77,7 +79,16 @@ function render(state) {
   $('.results').append(`<img src="https://media.giphy.com/media/${state.id[0]}/giphy.gif"/>`);
 }
 
-
-
-
 //////////////EVENT LISTENERS////////////////
+
+function eventListener() {
+    $('.submit').click(function(event) {
+    event.preventDefault();
+    getDataFromApi($('.Beginning').val());
+  });
+}
+
+
+$(function(){
+  eventListener();
+});
