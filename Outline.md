@@ -30,3 +30,21 @@ Wireframe:
 https://wireframe.cc/Ogb7iO
 
 
+
+User Flow
+
+First page, user sees:
+ //Title
+ //Instructions
+ //Three Boxes for Beginning Middle and End
+ //Submit button
+User can input text in any one of the three boxes
+  //clicking submit will render a gif for that best fix the text they have entered
+Second page, user sees:
+  //Title
+  //Instructions (different text)
+  //Three boxes for Beginning, Middle and End
+  //Results box with three gifs total
+  //Cycle buttons under the Beginning Middle and End to go through gifs that are most relevant to their story 
+  //New Story button to start over
+  //Save button at bottom of results that allows them to save
