@@ -2,7 +2,7 @@ const appState = {
   beginning: [], // user input 1
   middle: [], // user input 2
   end: [], // user input 3
-  //embed_url: [stick guys here], // https://giphy.com/embed/U7Lvtcuqh4WZy
+  id: [], // https://giphy.com/3o6Zt00pN0VEYTjeow
 };
 
 /////STATE MODS/////
@@ -10,15 +10,19 @@ const appState = {
 
 let giphyURL='http://api.giphy.com/v1/gifs/search';
 // Giphy API Functions
-function getDataFromApi(searchTerm, callback) {
+function getDataFromApi(searchTerm) {
   var query = {
     part: 'slug',
-    limit: 9,
+    limit: 1,
     sort: 'relevant',
     q: searchTerm,
     api_key: 'dc6zaTOxFJmzC'
   };
-  $.getJSON(giphyURL, query, callback);
+  $.getJSON(giphyURL, query, function(data) {
+
+    fillURL(appState, data.data[0].id);
+        console.log(data.data[0].id)
+  });
 }
 // Beginning Story
 function fillinBeginning (state, userElement) {
@@ -46,21 +50,30 @@ function fillinEnd (state, userElement) {
 };
 // Fill the URL with my element
 function fillURL (state, urlElement) {
-  state.embed_url.push(urlElement);
+  state.id.push(urlElement);
 };
 
+// function tempLogInfo (data) {
+//   console.log(data);
+// }
 
-
-getDataFromApi('sleep', displayGiphySearchData);
+getDataFromApi('I got up this morning.');
+console.log(appState);
 // getDataFromApi('I got up this morning.', displayGiphySearchData);
   //the first gif to come back from this is a 404 error and doesn't exist on the site.
+
+  // get casey when this happens!!!
+  // 404
+  // embed gif into html
+  // ...
 
 ////////RENDERING FUNCTIONS/////////////
 
 
-function displayGiphySearchData(data) {
-  console.log(data);
-//   document.write(`<a href="${data.data[0].bitly_gif_url}">"Link"</a>`);
+function render(state) {
+  console.log(state);
+  (`<img src="https://media.${objhere}/${state.id}/giphy.gifs/>`);
+  //  ${data.data[0].bitly_gif_url}">"Link"</a>
 }
 
 
