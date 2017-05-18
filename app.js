@@ -22,7 +22,7 @@ function getDataFromApi(searchTerm, callback) {
 
 function displayGiphySearchData(data) {
   console.log(data);
-  document.write(`<a href="${data.data[0].bitly_gif_url}">"Link"</a>`);
+//   document.write(`<a href="${data.data[0].bitly_gif_url}">"Link"</a>`);
 }
 
 getDataFromApi('sleep', displayGiphySearchData);
