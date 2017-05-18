@@ -19,10 +19,11 @@ function getDataFromApi(searchTerm) {
     api_key: 'dc6zaTOxFJmzC'
   };
   $.getJSON(giphyURL, query, function(data) {
-
     fillURL(appState, data.data[0].id);
+    render(appState);
         console.log(data.data[0].id)
   });
+
 }
 // Beginning Story
 function fillinBeginning (state, userElement) {
@@ -57,8 +58,10 @@ function fillURL (state, urlElement) {
 //   console.log(data);
 // }
 
-getDataFromApi('I got up this morning.');
+getDataFromApi('sleep');
+console.log('a log in the code right after we call getDataFromApi')
 console.log(appState);
+
 // getDataFromApi('I got up this morning.', displayGiphySearchData);
   //the first gif to come back from this is a 404 error and doesn't exist on the site.
 
@@ -69,12 +72,12 @@ console.log(appState);
 
 ////////RENDERING FUNCTIONS/////////////
 
-
 function render(state) {
   console.log(state);
-  (`<img src="https://media.${objhere}/${state.id}/giphy.gifs/>`);
-  //  ${data.data[0].bitly_gif_url}">"Link"</a>
+  $('.results').append(`<img src="https://media.giphy.com/media/${state.id[0]}/giphy.gif"/>`);
 }
+
+
 
 
 //////////////EVENT LISTENERS////////////////
