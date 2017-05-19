@@ -2,4 +2,10 @@
     display: none;
 }
 
+img {
+    width: 280px; 
+    height: 150px; 
+    left: 0px;
+    top: 0px; 
+}
 

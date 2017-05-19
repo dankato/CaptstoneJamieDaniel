@@ -96,9 +96,10 @@ function render(state) {
 function listenForText() {
     $('.submit').click(function(event) {
     event.preventDefault();
-    getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
-    // getDataFromApi($('.Middle').val());
-    // getDataFromApi($('.End').val());
+    getDataFromApi($('.Beginning').val());
+    // getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
+    getDataFromApi($('.Middle').val());
+    getDataFromApi($('.End').val());
   });
 }
 
