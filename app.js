@@ -97,10 +97,17 @@ function render(state) {
 function listenForText() {
     $('.submit').click(function(event) {
     event.preventDefault();
+<<<<<<< HEAD
      //   getInput(appState, [])
     getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
     // getDataFromApi($('.Middle').val());
     // getDataFromApi($('.End').val());
+=======
+    getDataFromApi($('.Beginning').val());
+    // getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
+    getDataFromApi($('.Middle').val());
+    getDataFromApi($('.End').val());
+>>>>>>> 76bd0b218db90447ec76317e18ccc0140c0d358f
   });
 }
 

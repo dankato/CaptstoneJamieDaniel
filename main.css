@@ -2,6 +2,7 @@
     display: none;
 }
 
+<<<<<<< HEAD
 * {
     text-align: center;
 }
@@ -40,6 +41,13 @@ p {
     height: 35px;
     padding: 20px;
     
+=======
+img {
+    width: 280px; 
+    height: 150px; 
+    left: 0px;
+    top: 0px; 
+>>>>>>> 76bd0b218db90447ec76317e18ccc0140c0d358f
 }
 
 .resize {
