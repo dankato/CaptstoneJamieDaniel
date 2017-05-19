@@ -111,7 +111,7 @@ function render(state) {
         const current = state[storyType].current;
         // const { allIds, current } = state[storyType];
         const itemID = allIds[current];
-        $('.results').append(`<img src="https://media.giphy.com/media/${itemID}/giphy.gif", class ='resize'/>`);
+        $('.results').append(`<div class="result-story"><img src="https://media.giphy.com/media/${itemID}/giphy.gif", class ='resize'/><button id="${storyType}">Cycle</button></div>`);
       })
   }
 }
@@ -119,8 +119,9 @@ function render(state) {
 //////////////EVENT LISTENERS////////////////
 
 function listenForText() {
-    $('.submit').click(function(event) {
+  $('form').submit(function(event) {
     event.preventDefault();
+
     getDataFromApi($('.Beginning').val(), 'beginning', function(){
       getDataFromApi($('.Middle').val(), 'middle', function() {
         getDataFromApi($('.End').val(), 'end', function() {
@@ -128,8 +129,26 @@ function listenForText() {
         });
       });
     });
-
   });
+}
+
+function cycleGifsBeginning() {
+  $('.results').on('click', '#beginning', function(event) {
+    incStoryCurrentImage(appState, 'beginning');
+    render(appState);
+  })
+}
+
+function cycleGifsBeginning() {
+  $('.results').on('click', '#middle', function(event) {
+
+  })
+}
+
+function cycleGifsBeginning() {
+  $('.results').on('click', '#end', function(event) {
+
+  })
 }
 
 // function listenMiddle() {
@@ -148,6 +167,7 @@ function listenForText() {
 
 $(function(){
   listenForText();
+  cycleGifsBeginning();
   // listenMiddle();
   // listenEnd();
 });
