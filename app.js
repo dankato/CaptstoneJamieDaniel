@@ -47,53 +47,12 @@ function incStoryCurrentImage(state, storyType) {
   state[storyType].current++;
 }
 
-// // Beginning Story
-// function fillinBeginning (state, userElement1, userElement2, userElement3) {
-//   if (userElement === null) {
-//       state.beginning.userQuery.push('no text entered');
-//   } else {
-//       state.beginning.push(userElement);
-//   }
-// };
-// // // Middle Story
-// function fillinMiddle (state, userElement) {
-//   if (userElement === null) {
-//       state.middle.push('');
-//   } else {
-//       state.middle.push(userElement);
-//   }
-// };
-// // // End Story
-// function fillinEnd (state, userElement) {
-//   if (userElement === null) {
-//       state.end.push('');
-//   } else {
-//       state.end.push(userElement);
-//   }
-// };
-
-
 
 // Fill the URL with my element
 function fillURL (state, urlElement) {
   state.id.push(urlElement);
 };
 
-// function tempLogInfo (data) {
-//   console.log(data);
-// }
-
-
-
-console.log(appState);
-
-// getDataFromApi('I got up this morning.', displayGiphySearchData);
-  //the first gif to come back from this is a 404 error and doesn't exist on the site.
-
-  // get casey when this happens!!!
-  // 404
-  // embed gif into html
-  // ...
 
 function shouldRender(state, storyTypes) {
   return storyTypes.map(storyType => state[storyType].allIds.length).filter(lengths => lengths < 1) < 1;
@@ -104,7 +63,6 @@ function render(state) {
   $('.results').empty();
   let storyTypes = ['beginning', 'middle', 'end'];
   if (shouldRender(state, storyTypes)) {
-      console.log('should render??', state);
       storyTypes.forEach(storyType => {
         const allIds = state[storyType].allIds;
         const current = state[storyType].current;
@@ -131,44 +89,20 @@ function listenForText() {
   });
 }
 
-function cycleGifsBeginning() {
-  $('.results').on('click', '#beginning', function(event) {
-    incStoryCurrentImage(appState, 'beginning');
+
+function cycleGifs(buttonID, storyType) {
+  $('.results').on('click', buttonID, function(event) {
+    incStoryCurrentImage(appState, storyType);
     render(appState);
   })
 }
 
-function cycleGifsMedium() {
-  $('.results').on('click', '#middle', function(event) {
-    incStoryCurrentImage(appState, 'middle');
-    render(appState);
-  })
-}
-
-function cycleGifsEnd() {
-  $('.results').on('click', '#end', function(event) {
-    incStoryCurrentImage(appState, 'end');
-    render(appState);
-  })
-}
-
-// function listenMiddle() {
-//     $('.submit').click(function(event) {
-//     event.preventDefault();
-//     getDataFromApi($('.Middle').val());
-//   });
-// }
-
-// function listenEnd() {
-//     $('.submit').click(function(event) {
-//     event.preventDefault();
-//     getDataFromApi($('.End').val());
-//   });
-// }
+//////////////////////////DOCUMENT READY CALLS////////////////////////
 
 $(function(){
   listenForText();
-  cycleGifsBeginning();
-  cycleGifsMedium();
-  cycleGifsEnd();
+  cycleGifs('#beginning', 'beginning');
+  cycleGifs('#middle', 'middle');
+  cycleGifs('#end', 'end'); 
 });
+
