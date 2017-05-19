@@ -1,9 +1,19 @@
 const appState = {
-    userInput: [],
-//   beginning: [], // user input 1
-//   middle: [], // user input 2
-//   end: [], // user input 3
-  id: [], // https://giphy.com/3o6Zt00pN0VEYTjeow
+    // userInput: [],
+  beginning: {
+    allIds: [],
+    current: 0,
+  },
+
+   middle: {
+    allIds: [],
+    current: 0,
+  },
+
+  end: {
+    allIds: [],
+    current: 0,
+  }
 };
 
 /////STATE MODS/////
@@ -11,34 +21,42 @@ const appState = {
 
 let giphyURL='http://api.giphy.com/v1/gifs/search';
 // Giphy API Functions
-function getDataFromApi(searchTerm) {
+function getDataFromApi(searchTerm, storyType, callback) {
   var query = {
     part: 'slug',
-    limit: 1,
+    limit: 25,
     sort: 'relevant',
     q: searchTerm,
     api_key: 'dc6zaTOxFJmzC'
   };
-  $.getJSON(giphyURL, query, function(data) {
-    fillURL(appState, data.data[0].id);
-    getInput(appState, [$('.Beginning').val(), $('.Middle').val(), $('.End').val()]);
-    // fillinMiddle(appState, $('.Middle').val());
-    // fillinEnd(appState, $('.End').val());
-    render(appState);
-        console.log(data.data[0].id);
-        console.log(appState);
+  $.getJSON(giphyURL, query, function(response) {
+      const imageIds = response.data.map(item => item.id);
+      setStoryIds(appState, storyType, imageIds);
+      callback();
   });
 
 }
-// Beginning Story
-// function fillinBeginning (state, userElement) {
+
+function setStoryIds(state, storyType, imageIds) {
+  state[storyType].allIds = imageIds;
+}
+
+function incStoryCurrentImage(state, storyType) {
+  if(state[storyType].current === state[storyType].allIds.length - 1) {
+    state[storyType].current = 0;
+  }
+  state[storyType].current++;
+}
+
+// // Beginning Story
+// function fillinBeginning (state, userElement1, userElement2, userElement3) {
 //   if (userElement === null) {
-//       state.beginning.push('no text entered');
+//       state.beginning.userQuery.push('no text entered');
 //   } else {
 //       state.beginning.push(userElement);
 //   }
 // };
-// // Middle Story
+// // // Middle Story
 // function fillinMiddle (state, userElement) {
 //   if (userElement === null) {
 //       state.middle.push('');
@@ -46,7 +64,7 @@ function getDataFromApi(searchTerm) {
 //       state.middle.push(userElement);
 //   }
 // };
-// // End Story
+// // // End Story
 // function fillinEnd (state, userElement) {
 //   if (userElement === null) {
 //       state.end.push('');
@@ -55,12 +73,7 @@ function getDataFromApi(searchTerm) {
 //   }
 // };
 
-function getInput(state, userText) {
-    state.userInput = userText
-    /*userText.forEach(el =>
-        state.userInput.push(el)
-    ) */
-}
+
 
 // Fill the URL with my element
 function fillURL (state, urlElement) {
@@ -83,13 +96,24 @@ console.log(appState);
   // embed gif into html
   // ...
 
+function shouldRender(state, storyTypes) {
+  return storyTypes.map(storyType => state[storyType].allIds.length).filter(lengths => lengths < 1) < 1;
+}
 ////////RENDERING FUNCTIONS/////////////
 
 function render(state) {
-  console.log(state);
-  state.id.forEach(item => 
-    $('.results').append(`<img src="https://media.giphy.com/media/${item}/giphy.gif", class ='resize'/>`)
-  )
+  // console.log(state);
+  let storyTypes = ['beginning', 'middle', 'end'];
+  if (shouldRender(state, storyTypes)) {
+      console.log('should render??', state);
+      storyTypes.forEach(storyType => {
+        const allIds = state[storyType].allIds;
+        const current = state[storyType].current;
+        // const { allIds, current } = state[storyType];
+        const itemID = allIds[current];
+        $('.results').append(`<img src="https://media.giphy.com/media/${itemID}/giphy.gif", class ='resize'/>`);
+      })
+  }
 }
 
 //////////////EVENT LISTENERS////////////////
@@ -97,17 +121,14 @@ function render(state) {
 function listenForText() {
     $('.submit').click(function(event) {
     event.preventDefault();
-<<<<<<< HEAD
-     //   getInput(appState, [])
-    getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
-    // getDataFromApi($('.Middle').val());
-    // getDataFromApi($('.End').val());
-=======
-    getDataFromApi($('.Beginning').val());
-    // getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
-    getDataFromApi($('.Middle').val());
-    getDataFromApi($('.End').val());
->>>>>>> 76bd0b218db90447ec76317e18ccc0140c0d358f
+    getDataFromApi($('.Beginning').val(), 'beginning', function(){
+      getDataFromApi($('.Middle').val(), 'middle', function() {
+        getDataFromApi($('.End').val(), 'end', function() {
+          render(appState);
+        });
+      });
+    });
+
   });
 }
 
@@ -127,6 +148,6 @@ function listenForText() {
 
 $(function(){
   listenForText();
-//   listenMiddle();
-//   listenEnd();
+  // listenMiddle();
+  // listenEnd();
 });
