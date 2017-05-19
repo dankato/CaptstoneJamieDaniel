@@ -10,22 +10,25 @@
 <body>
     <div class='container'>
         <h1>Gif Storytelling!</h1>
-        <p>Instructions: </p>
+        <p>Instructions: Enter in your story. Each entry represents your basic story structure, "beginning", "middle', and "end". Please keep each entry under 25 characters.</p>
     </div>
     <div>
         <form class="story">
-            <input type="text" class="Beginning">
-            <input type="text" class="Middle">
-            <input type="text" class="End">
+            <input type="text" class="Beginning" maxlength="25" placeholder='e.g. i woke up'>
+            <input type="text" class="Middle" maxlength="25" placeholder='e.g. walked to school'>
+            <input type="text" class="End" maxlength="25" placeholder='e.g. i fell asleep'>
             <button class="submit">Submit</button>
             <button class="cycle-beginning hidden">Cycle Beginning</button>
             <button class="cycle-middle hidden">Cycle Middle</button>
             <button class="cycle-end hidden">Cycle End</button>
         </form>
     </div>
+
     <div class="results">
-        
+
     </div>
+    
+    
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="app.js"></script>
 </body>

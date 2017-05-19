@@ -56,9 +56,10 @@ function getDataFromApi(searchTerm) {
 // };
 
 function getInput(state, userText) {
-    userText.forEach(el =>
+    state.userInput = userText
+    /*userText.forEach(el =>
         state.userInput.push(el)
-    ) 
+    ) */
 }
 
 // Fill the URL with my element
@@ -87,7 +88,7 @@ console.log(appState);
 function render(state) {
   console.log(state);
   state.id.forEach(item => 
-    $('.results').append(`<img src="https://media.giphy.com/media/${item}/giphy.gif"/>`)
+    $('.results').append(`<img src="https://media.giphy.com/media/${item}/giphy.gif", class ='resize'/>`)
   )
 }
 
@@ -96,6 +97,7 @@ function render(state) {
 function listenForText() {
     $('.submit').click(function(event) {
     event.preventDefault();
+     //   getInput(appState, [])
     getDataFromApi($('.Beginning').val() + '+' + $('.Middle').val() + '+' + $('.End').val());
     // getDataFromApi($('.Middle').val());
     // getDataFromApi($('.End').val());
