@@ -10,43 +10,36 @@ body {
     margin: 10px;
     padding: 10px;
     border: 0;
-    font-family: comic sans ms,Helvetica Neue, sans-serif;
+    font-family: comic sans ms, Helvetica Neue, sans-serif;
 }
 
-container
-
 h1 {
-  color: pink;
+  color: #EE8678;
   margin: 0;
   padding: 10px;
     font-size: 64px;
 }
 
 p {
-    
     border: 1px solid white;
     color: black;
-    width: auto;
-    height: auto;
+    /*width: auto;
+    height: auto;*/
     padding: 4px;
 }
 
 
-.story, .results {
-     background-image: linear-gradient(-98deg, #EA7851 0%, #EE8678 20%, #EE9F7A 70%);
-}
 
 .story {
-    
     height: 35px;
     padding: 20px;
 }
 
 
-/*.resize {
-    max-width: 25%;
-    max-height: 25%;
-}*/
+.resize {
+    /*max-width: 25%;
+    max-height: 25%;*/
+}
 
 input {
     padding: 7px 35px 7px 12px;
@@ -61,32 +54,66 @@ input {
 
 button {
     color: indianred;
-    
-}
+    padding: 0 8px;
+    line-height: 27px;
+    background: white;
 
-
-img {
-    border: 2px solid skyblue;
-    margin: 10px;
-    padding: 10px;
-    background-color: skyblue;
-    border-radius: 5px;
-    
-    float: center;
-    /*margin: 1.858736059%;*/
-    padding: 20px 0;
-    text-align: center;
-    width: 29.615861214%;
-}
-
-
-.result-story {
-    display: inline-block;
 }
 
 .results {
-/*  background: pink;*/
-  overflow: auto;
+    /*position: relative;*/
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
 }
 
+.result-story {
+    /*display: inline-block;*/
+    /*max-inline-size: auto;*/
+    /*overflow: auto;*/
+    /*white-space: nowrap;*/
+    padding-left: 40px;
+    /*float: left;*/
+    
+     /*left: auto;*/
+     
+    /*position: relative;*/
+    margin: 0 auto;
+    /*display: inline-block;*/
+    
+}
 
+img {
+    border: 2px solid skyblue;
+    background-color: skyblue;
+    border-radius: 2px;
+/*display: block;
+   */
+    width: 70%;
+    height: 70%; 
+    /*margin: 1.858736059%;
+    width: 29.615861214%;*/
+    padding: 3px;
+    /*position: absolute;*/
+
+}
+
+.result-story > button {
+    display: block;
+    /*float: center;*/
+    margin-left: auto;
+    margin-right: auto;
+    /*position: absolute;*/
+    /*text-align:center;*/
+}
+
+.story, .results {
+     background-image: linear-gradient(-98deg, #EA7851 0%, #EE8678 20%, #EE9F7A 70%);
+
+}
+.donttouch {
+    color:#FFFFF0;
+}
