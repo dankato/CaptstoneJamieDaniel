@@ -1,5 +1,4 @@
 const appState = {
-    // userInput: [],
   beginning: {
     allIds: [],
     current: 0,
@@ -102,7 +101,7 @@ function shouldRender(state, storyTypes) {
 ////////RENDERING FUNCTIONS/////////////
 
 function render(state) {
-  // console.log(state);
+  $('.results').empty();
   let storyTypes = ['beginning', 'middle', 'end'];
   if (shouldRender(state, storyTypes)) {
       console.log('should render??', state);
@@ -139,15 +138,17 @@ function cycleGifsBeginning() {
   })
 }
 
-function cycleGifsBeginning() {
+function cycleGifsMedium() {
   $('.results').on('click', '#middle', function(event) {
-
+    incStoryCurrentImage(appState, 'middle');
+    render(appState);
   })
 }
 
-function cycleGifsBeginning() {
+function cycleGifsEnd() {
   $('.results').on('click', '#end', function(event) {
-
+    incStoryCurrentImage(appState, 'end');
+    render(appState);
   })
 }
 
@@ -168,6 +169,6 @@ function cycleGifsBeginning() {
 $(function(){
   listenForText();
   cycleGifsBeginning();
-  // listenMiddle();
-  // listenEnd();
+  cycleGifsMedium();
+  cycleGifsEnd();
 });
