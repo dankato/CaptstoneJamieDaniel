@@ -12,16 +12,6 @@ body {
     border: 0;
     font-family: Helvetica Neue, sans-serif;
     background-image: linear-gradient(-98deg, #EA7851 0%, #EE8678 20%, #EE9F7A 70%);
-    
-    /*background:  
-    linear-gradient(
-      rgba(128, 239, 91, 0.45), 
-      rgba(3, 56, 216, 0.71)
-    ),
-    
-    url('http://static.boredpanda.com/blog/wp-content/uploads/2016/11/funny-unexpected-ending-comics-mrlovenstein-32-5838161935bc7__700.jpg');
-
-   background-size: 30%;*/
 }
 
 h1 {
@@ -39,17 +29,9 @@ p {
     padding: 9px;
 }
 
-
-
 .story {
     height: 35px;
     padding: 20px;
-}
-
-
-.resize {
-    /*max-width: 25%;
-    max-height: 25%;*/
 }
 
 input {
@@ -68,63 +50,36 @@ button {
     padding: 0 8px;
     line-height: 27px;
     background: white;
-
 }
 
 .results {
-    /*position: relative;*/
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-
 }
 
 .result-story {
-    /*display: inline-block;*/
-    /*max-inline-size: auto;*/
-    /*overflow: auto;*/
-    /*white-space: nowrap;*/
     padding-left: 40px;
-    /*float: left;*/
-    
-     /*left: auto;*/
-     
-    /*position: relative;*/
-    margin: 0 auto;
-    /*display: inline-block;*/
-    
+    margin: 0 auto;    
 }
 
 img {
     border: 2px solid white;
     background-color: white;
     border-radius: 2px;
-/*display: block;
-   */
     width: 70%;
     height: 70%; 
-    /*margin: 1.858736059%;
-    width: 29.615861214%;*/
     padding: 3px;
-    /*position: absolute;*/
-
 }
 
 .result-story > button {
     display: block;
-    /*float: center;*/
     margin-left: auto;
     margin-right: auto;
-    /*position: absolute;*/
-    /*text-align:center;*/
 }
 
-.story, .results {
-     /*background-image: linear-gradient(-98deg, #EA7851 0%, #EE8678 20%, #EE9F7A 70%);*/
-
-}
 .donttouch {
-    color:#FFFFF0;
+    color:#EE9F7A;
 }
