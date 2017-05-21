@@ -1,7 +1,3 @@
-
-
-// WILLIAM: This code is clea and concise and formatted really well!
-
 'use strict';
 
 const appState = {
