@@ -1,10 +1,12 @@
+'use strict';
+
 const appState = {
   beginning: {
     allIds: [],
     current: 0,
   },
 
-   middle: {
+  middle: {
     allIds: [],
     current: 0,
   },
@@ -29,9 +31,9 @@ function getDataFromApi(searchTerm, storyType, callback) {
     api_key: 'dc6zaTOxFJmzC'
   };
   $.getJSON(giphyURL, query, function(response) {
-      const imageIds = response.data.map(item => item.id);
-      setStoryIds(appState, storyType, imageIds);
-      callback();
+    const imageIds = response.data.map(item => item.id);
+    setStoryIds(appState, storyType, imageIds);
+    callback();
   });
 
 }
@@ -48,12 +50,6 @@ function incStoryCurrentImage(state, storyType) {
 }
 
 
-// Fill the URL with my element
-function fillURL (state, urlElement) {
-  state.id.push(urlElement);
-};
-
-
 function shouldRender(state, storyTypes) {
   return storyTypes.map(storyType => state[storyType].allIds.length).filter(lengths => lengths < 1) < 1;
 }
@@ -63,13 +59,13 @@ function render(state) {
   $('.results').empty();
   let storyTypes = ['beginning', 'middle', 'end'];
   if (shouldRender(state, storyTypes)) {
-      storyTypes.forEach(storyType => {
-        const allIds = state[storyType].allIds;
-        const current = state[storyType].current;
+    storyTypes.forEach(storyType => {
+      const allIds = state[storyType].allIds;
+      const current = state[storyType].current;
         // const { allIds, current } = state[storyType];
-        const itemID = allIds[current];
-        $('.results').append(`<div class="result-story"><img src="https://media.giphy.com/media/${itemID}/giphy.gif", class ='resize'/><button id="${storyType}">Cycle</button></div>`);
-      })
+      const itemID = allIds[current];
+      $('.results').append(`<div class="result-story"><img src="https://media.giphy.com/media/${itemID}/giphy.gif", class ='resize'/><button id="${storyType}">Cycle</button></div>`);
+    });
   }
 }
 
@@ -91,10 +87,10 @@ function listenForText() {
 
 
 function cycleGifs(buttonID, storyType) {
-  $('.results').on('click', buttonID, function(event) {
+  $('.results').on('click', buttonID, function() {
     incStoryCurrentImage(appState, storyType);
     render(appState);
-  })
+  });
 }
 
 //////////////////////////DOCUMENT READY CALLS////////////////////////
