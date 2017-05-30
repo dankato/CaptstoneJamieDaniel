@@ -69,6 +69,7 @@ function render(state) {
   }
 }
 
+
 //////////////EVENT LISTENERS////////////////
 
 function listenForText() {

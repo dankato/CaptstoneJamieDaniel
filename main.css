@@ -18,7 +18,7 @@ h1 {
   color: white;
   margin: 0;
   padding: 10px;
-    font-size: 64px;
+  font-size: 64px;
 }
 
 p {
@@ -76,10 +76,24 @@ img {
 
 .result-story > button {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
+    /* margin: top right bottom left;*/
+    /* margin: top+bottom left+right;*/
+     margin: 0 auto;
 }
 
 .donttouch {
     color:#EE9F7A;
+}
+
+@media screen and (max-width: 375px) {
+    body {
+        background-image: none;
+        background-color: maroon;
+    }
+
+    h1 {
+        
+    }
 }
