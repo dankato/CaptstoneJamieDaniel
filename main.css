@@ -90,10 +90,7 @@ img {
 @media screen and (max-width: 375px) {
     body {
         background-image: none;
-        background-color: maroon;
+        background-color: indianred;
     }
 
-    h1 {
-        
-    }
 }

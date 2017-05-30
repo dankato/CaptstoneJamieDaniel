@@ -17,19 +17,17 @@ const appState = {
   }
 };
 
-/////STATE MODS/////
-// http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC
 
 let giphyURL='http://api.giphy.com/v1/gifs/search';
-// Giphy API Functions
-function getDataFromApi(searchTerm, storyType, callback) { // main GET from api function
+
+function getDataFromApi(searchTerm, storyType, callback) { 
   var query = {
     part: 'slug',
     limit: 25,
     sort: 'relevant',
     q: searchTerm,
     api_key: 'dc6zaTOxFJmzC'
-  }; // above is just the query builder
+  }; 
   $.getJSON(giphyURL, query, function(response) {
     const imageIds = response.data.map(item => item.id);
     setStoryIds(appState, storyType, imageIds);
@@ -38,11 +36,9 @@ function getDataFromApi(searchTerm, storyType, callback) { // main GET from api 
 
 }
 
-function setStoryIds(state, storyType, imageIds) { // just sets the new array of image ids into the app state for each 'storyType' meaning beginning, middle, or end.
-  state[storyType].allIds = imageIds;
-}
+function setStoryIds(state, storyType, imageIds) { 
 
-function incStoryCurrentImage(state, storyType) { // start over when you get to the end of the results
+function incStoryCurrentImage(state, storyType) { 
   if(state[storyType].current === state[storyType].allIds.length - 1) {
     state[storyType].current = 0;
   }
@@ -50,10 +46,10 @@ function incStoryCurrentImage(state, storyType) { // start over when you get to 
 }
 
 
-function shouldRender(state, storyTypes) { // checking to make sure you have all your results back from the server before rendering
+function shouldRender(state, storyTypes) { 
   return storyTypes.map(storyType => state[storyType].allIds.length).filter(lengths => lengths < 1) < 1;
 }
-////////RENDERING FUNCTIONS/////////////
+
 
 function render(state) {
   $('.results').empty();
@@ -62,7 +58,6 @@ function render(state) {
     storyTypes.forEach(storyType => {
       const allIds = state[storyType].allIds;
       const current = state[storyType].current;
-        // const { allIds, current } = state[storyType];
       const itemID = allIds[current];
       $('.results').append(`<div class="result-story"><img src="https://media.giphy.com/media/${itemID}/giphy.gif", class ='resize'/><button id="${storyType}">Cycle</button></div>`);
     });
@@ -70,7 +65,6 @@ function render(state) {
 }
 
 
-//////////////EVENT LISTENERS////////////////
 
 function listenForText() {
   $('form').submit(function(event) {
@@ -94,7 +88,6 @@ function cycleGifs(buttonID, storyType) {
   });
 }
 
-//////////////////////////DOCUMENT READY CALLS////////////////////////
 
 $(function(){
   listenForText();
