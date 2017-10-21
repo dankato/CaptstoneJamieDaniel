@@ -52,6 +52,10 @@ button {
     background: white;
 }
 
+#submit-button {
+    margin: 10px;
+}
+
 .results {
     width: 100%;
     display: flex;
@@ -85,6 +89,13 @@ img {
 
 .donttouch {
     color:#EE9F7A;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
 }
 
 @media screen and (max-width: 375px) {
