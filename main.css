@@ -52,10 +52,6 @@ button {
     background: white;
 }
 
-#submit-button {
-    margin: 10px;
-}
-
 .results {
     width: 100%;
     display: flex;
@@ -80,22 +76,11 @@ img {
 
 .result-story > button {
     display: block;
-    /*margin-left: auto;
-    margin-right: auto;*/
-    /* margin: top right bottom left;*/
-    /* margin: top+bottom left+right;*/
-     margin: 0 auto;
+    margin: 0 auto;
 }
 
 .donttouch {
     color:#EE9F7A;
-}
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
 }
 
 @media screen and (max-width: 375px) {
@@ -103,5 +88,4 @@ footer {
         background-image: none;
         background-color: indianred;
     }
-
 }

@@ -17,7 +17,6 @@ const appState = {
   }
 };
 
-
 let giphyURL='http://api.giphy.com/v1/gifs/search';
 
 function getDataFromApi(searchTerm, storyType, callback) { 
@@ -33,23 +32,22 @@ function getDataFromApi(searchTerm, storyType, callback) {
     setStoryIds(appState, storyType, imageIds);
     callback();
   });
-
 }
 
 function setStoryIds(state, storyType, imageIds) { 
+  state[storyType].allIds = imageIds;
+}
 
-function incStoryCurrentImage(state, storyType) { 
+function storyCurrentImage(state, storyType) { 
   if(state[storyType].current === state[storyType].allIds.length - 1) {
     state[storyType].current = 0;
   }
   state[storyType].current++;
 }
 
-
 function shouldRender(state, storyTypes) { 
   return storyTypes.map(storyType => state[storyType].allIds.length).filter(lengths => lengths < 1) < 1;
 }
-
 
 function render(state) {
   $('.results').empty();
@@ -63,8 +61,6 @@ function render(state) {
     });
   }
 }
-
-
 
 function listenForText() {
   $('form').submit(function(event) {
@@ -80,14 +76,12 @@ function listenForText() {
   });
 }
 
-
 function cycleGifs(buttonID, storyType) {
   $('.results').on('click', buttonID, function() {
-    incStoryCurrentImage(appState, storyType);
+    storyCurrentImage(appState, storyType);
     render(appState);
   });
 }
-
 
 $(function(){
   listenForText();
@@ -95,4 +89,3 @@ $(function(){
   cycleGifs('#middle', 'middle');
   cycleGifs('#end', 'end'); 
 });
-
